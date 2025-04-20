@@ -1,19 +1,38 @@
+import keyboard.mouse
 import keyboard, time, pydirectinput
 from datetime import datetime
 from ctypes import windll
 
-version = "0.1.8"
+version = "0.1.9"
 
 # improve accuracy
 timeBeginPeriod = windll.winmm.timeBeginPeriod
 timeBeginPeriod(1)
 pydirectinput.PAUSE=0
 
+# globals
+file_data = ""
+last = datetime.now()
+recording = False
+
+def on_click():
+    global file_data, last, recording
+    if not recording:
+        return
+    now = datetime.now()
+    elapsed = (now-last)
+    file_data += "\nwait:"+str(elapsed.microseconds)
+    file_data +="\n"+"click"
+
+keyboard.mouse.on_click(on_click)
 def record():
+    global file_data, last, recording
     file_data = ""
-    last = datetime.now()
+    recording = True
+    
     while True:
         event = keyboard.read_event()
+        
         if event.name == "esc":
             break
         now = datetime.now()
@@ -23,6 +42,7 @@ def record():
         
         file_data +="\n"+event.event_type+ ":"+event.name
     
+    recording = False
     print("done")
     with open("macro.mnd","w") as f:
         f.write(file_data)
@@ -36,12 +56,13 @@ def play():
         match split[0]:
             case "wait":
                 amt = float(split[1])*0.000001
-                print(f"sleep for {amt}")
                 time.sleep(amt)
             case "down":
                 pydirectinput.keyDown(split[1])
             case "up":
                 pydirectinput.keyUp(split[1])
+            case "click":
+                pydirectinput.leftClick()
             case _ : 
                 print(f"bad file at line: {index}")
                 quit()
