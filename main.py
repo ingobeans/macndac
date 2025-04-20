@@ -2,7 +2,7 @@ import keyboard, time, pydirectinput
 from datetime import datetime
 from ctypes import windll
 
-version = "0.1.5"
+version = "0.1.6"
 
 # improve accuracy
 timeBeginPeriod = windll.winmm.timeBeginPeriod
@@ -10,6 +10,7 @@ timeBeginPeriod(1)
 pydirectinput.PAUSE=0
 
 def record():
+    file_data = ""
     last = datetime.now()
     while True:
         event = keyboard.read_event()
