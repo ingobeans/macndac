@@ -8,7 +8,7 @@ timeBeginPeriod(1)
 file_data=""
 last = datetime.now()
 
-pydirectinput.PAUSE=0.001
+pydirectinput.PAUSE=0
 
 def record():
     global last
