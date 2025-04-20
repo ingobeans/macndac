@@ -2,6 +2,8 @@ import keyboard, time, pydirectinput
 from datetime import datetime
 from ctypes import windll
 
+version = "0.1.5"
+
 # improve accuracy
 timeBeginPeriod = windll.winmm.timeBeginPeriod
 timeBeginPeriod(1)
@@ -44,6 +46,7 @@ def play():
                 quit()
 
 if __name__ == "__main__":
+    print(f"macndac {version}")
     match(input("[R]ecord or [P]lay or [H]otkey: ").lower()):
         case "r":
             record()
