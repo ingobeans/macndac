@@ -47,24 +47,25 @@ def play():
                 print(f"bad file at line: {index}")
                 quit()
 
-match(input("[R]ecord or [P]lay or [H]otkey: ").lower()):
-    case "r":
-        record()
-    case "p":
-        play()
-    case "h":
-        while True:
-            event = keyboard.read_event()
-            if event.name == "r":
-                print("hotkey record")
-                record()
-                quit()
-            elif event.name == "p":
-                print("hotkey play")
-                play()
-                quit()
-            elif event.name == "esc":
-                quit()
-    case _ : 
-        print("bad")
-        quit()
+if __name__ == "__main__":
+    match(input("[R]ecord or [P]lay or [H]otkey: ").lower()):
+        case "r":
+            record()
+        case "p":
+            play()
+        case "h":
+            while True:
+                event = keyboard.read_event()
+                if event.name == "r":
+                    print("hotkey record")
+                    record()
+                    quit()
+                elif event.name == "p":
+                    print("hotkey play")
+                    play()
+                    quit()
+                elif event.name == "esc":
+                    quit()
+        case _ : 
+            print("bad")
+            quit()
