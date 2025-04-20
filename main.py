@@ -2,7 +2,7 @@ import keyboard, time, pydirectinput
 from datetime import datetime
 from ctypes import windll
 
-version = "0.1.6"
+version = "0.1.7"
 
 # improve accuracy
 timeBeginPeriod = windll.winmm.timeBeginPeriod
@@ -59,11 +59,9 @@ if __name__ == "__main__":
                 if event.name == "r":
                     print("hotkey record")
                     record()
-                    quit()
                 elif event.name == "p":
                     print("hotkey play")
                     play()
-                    quit()
                 elif event.name == "esc":
                     quit()
         case _ : 
