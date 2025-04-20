@@ -2,21 +2,17 @@ import keyboard, time, pydirectinput
 from datetime import datetime
 from ctypes import windll
 
+# improve accuracy
 timeBeginPeriod = windll.winmm.timeBeginPeriod
 timeBeginPeriod(1)
-
-file_data=""
-last = datetime.now()
-
 pydirectinput.PAUSE=0
 
 def record():
-    global last
-    global file_data
+    last = datetime.now()
     while True:
+        event = keyboard.read_event()
         if event.name == "esc":
             break
-        event = keyboard.read_event()
         now = datetime.now()
         elapsed = (now-last)
         last = now
