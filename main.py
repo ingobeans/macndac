@@ -14,6 +14,8 @@ def record():
     global last
     global file_data
     while True:
+        if event.name == "esc":
+            break
         event = keyboard.read_event()
         now = datetime.now()
         elapsed = (now-last)
@@ -21,8 +23,6 @@ def record():
         file_data += "\nwait:"+str(elapsed.microseconds)
         
         file_data +="\n"+event.event_type+ ":"+event.name
-        if event.name == "esc":
-            break
     
     print("done")
     with open("macro.mnd","w") as f:
