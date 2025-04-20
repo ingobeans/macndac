@@ -46,6 +46,7 @@ def record():
     print("done")
     with open("macro.mnd","w") as f:
         f.write(file_data)
+
 def play():
     with open("macro.mnd","r") as f:
         file_data = f.read()
@@ -80,10 +81,10 @@ if __name__ == "__main__":
                 
                 if not event.event_type == "down":
                     continue
-                if event.name == "r":
+                if event.name == "e":
                     print("hotkey record")
                     record()
-                elif event.name == "p":
+                elif event.name == "f":
                     print("hotkey play")
                     play()
         case _ : 
