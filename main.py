@@ -81,10 +81,10 @@ if __name__ == "__main__":
                 
                 if not event.event_type == "down":
                     continue
-                if event.name == "e":
+                if event.name == "r":
                     print("hotkey record")
                     record()
-                elif event.name == "f":
+                elif event.name == "p":
                     print("hotkey play")
                     play()
         case _ : 
